@@ -11,7 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
         body {
-            overflow: hidden; /* Prevent scrolling on the 3D page */
+            overflow-x: hidden;
+            overflow-y: auto;
             background-color: #050505;
             margin: 0;
             padding: 0;
@@ -21,7 +22,7 @@
         .gift-page-wrapper {
             position: relative;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

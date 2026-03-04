@@ -32,24 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sequence Data
     const sequenceItems = [
          { type: 'photo', content: 'Photo Space' },
-        // { type: 'text', label: 'Name', value: 'Bhumi Gupta' },
-        // { type: 'text', label: 'Age', value: '21' },
-        // { type: 'text', label: 'Identity', value: 'Miss Gundi' },
-        // { type: 'text', label: 'Relation', value: 'Best Friend' },
-        // { type: 'text', label: 'Personality', value: 'Amazinggggggg' },
-        // { type: 'text', label: 'Status', value: 'Single But Ready To Mingle' },
-        // { type: 'text', label: 'Fav Food', value: 'Dosa, Golgappe, Momo, Pasta' },
-        // { type: 'text', label: 'Fav Item', value: 'Bangle, Payal, Kamarbandh, Jhumke' },
-        // { type: 'text', label: 'Fav Quote', value: 'Shut Up Yrr'},
-        // { type: 'text', label: 'Fav Actor', value: 'Seon Kim'},
-        // { type: 'text', label: 'Fav Singer', value: 'Talwinder'},
-        // { type: 'text', label: 'Paglu', value: 'SeonPaglu and TalwinderPaglu'},
-        // { type: 'text', label: 'Fav Place', value: 'Finland, Korea, Japan'},
-        // { type: 'text', label: 'Fav Thing', value: 'Northern Lights'},
-        // { type: 'text', label: 'Hobby', value: 'Eating, Sleeping, Being Confused'},
-        // { type: 'text', label: 'Nature', value: 'Green Forest'},
-        // { type: 'text', label: 'Most Hated Thing', value: 'Doglapanti'},
-        // { type: 'text', label: 'Fav Activity', value: 'Bathing'}
+        { type: 'text', label: 'Name', value: 'Bhumi Gupta' },
+        { type: 'text', label: 'Age', value: '21' },
+        { type: 'text', label: 'Identity', value: 'Miss Gundi' },
+        { type: 'text', label: 'Relation', value: 'Best Friend' },
+        { type: 'text', label: 'Personality', value: 'Amazinggggggg' },
+        { type: 'text', label: 'Status', value: 'Single But Ready To Mingle' },
+        { type: 'text', label: 'Fav Food', value: 'Dosa, Golgappe, Momo, Pasta' },
+        { type: 'text', label: 'Fav Item', value: 'Bangle, Payal, Kamarbandh, Jhumke' },
+        { type: 'text', label: 'Fav Quote', value: 'Shut Up Yrr'},
+        { type: 'text', label: 'Fav Actor', value: 'Seon Kim'},
+        { type: 'text', label: 'Fav Singer', value: 'Talwinder'},
+        { type: 'text', label: 'Paglu', value: 'SeonPaglu and TalwinderPaglu'},
+        { type: 'text', label: 'Fav Place', value: 'Finland, Korea, Japan'},
+        { type: 'text', label: 'Fav Thing', value: 'Northern Lights'},
+        { type: 'text', label: 'Hobby', value: 'Eating, Sleeping, Being Confused'},
+        { type: 'text', label: 'Nature', value: 'Green Forest'},
+        { type: 'text', label: 'Most Hated Thing', value: 'Doglapanti'},
+        { type: 'text', label: 'Fav Activity', value: 'Bathing'}
         ];
 
     function startVerificationSequence() {
@@ -87,9 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.className = 'photo-placeholder';
                 // Override margin bottom because it's now in its own container
                 element.style.marginBottom = '0';
-                element.textContent = itemData.content;
-                // Add an image tag here later if you want a real photo
-                // element.innerHTML = `<img src="path/to/photo.jpg" alt="Bhumi" style="width:100%; border-radius:50%;" />`;
+                // Add the image tag for pic2.jpeg
+                element.innerHTML = `<img src="pic2.jpeg" alt="Bhumi" style="width:100%; height:100%; object-fit: cover; border-radius:50%;" />`;
                 
                 document.getElementById('photoContainer').appendChild(element);
             } else {
