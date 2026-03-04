@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Moving Forward</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #050505;">
+    <main class="container fade-in" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        
+        <h1 class="welcome-text" style="font-size: 2rem; margin-bottom: 2rem;">Now after cake cutting, lets move forward</h1>
+        
+        <button id="btnOk" class="btn-primary" style="padding: 1rem 3rem; font-size: 1.2rem; border-radius: 50px;">OK</button>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnOk = document.getElementById('btnOk');
+            if (btnOk) {
+                btnOk.addEventListener('click', () => {
+                    // Navigate to wishes page
+                    window.location.href = "wishes.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>

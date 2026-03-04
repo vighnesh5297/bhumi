@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Security Question</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container fade-in" id="quizSection">
+        <h1 class="welcome-text" style="font-size: 1.5rem; margin-bottom: 2rem;">FINAL SECURITY CHECK</h1>
+        
+        <p style="font-size: 1.1rem; line-height: 1.5; margin-bottom: 2rem; color: #fff;">
+            What is the absolute most important rule when dealing with Miss Gundi?
+        </p>
+
+        <div class="option-grid">
+            <button class="option-btn" data-correct="false">Never share Golgappe</button>
+            <button class="option-btn" data-correct="true">Doglapanti is strictly prohibited</button>
+            <button class="option-btn" data-correct="false">Stop saying 'Shut Up Yrr'</button>
+            <button class="option-btn" data-correct="false">Wake up early</button>
+        </div>
+
+        <p id="quizMessage" class="error-message" style="margin-top: 2rem; font-size: 1.1rem;"></p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const options = document.querySelectorAll('.option-btn');
+            const message = document.getElementById('quizMessage');
+
+            options.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Disable all options after clicking
+                    options.forEach(opt => opt.disabled = true);
+                    
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+
+                    if (isCorrect) {
+                        this.classList.add('correct');
+                        message.style.color = '#4ade80'; // Success green
+                        message.textContent = "Correct! Access Granted.";
+                        message.classList.add('show');
+                        
+                        // Redirect to the candle page
+                        setTimeout(() => { window.location.href = "candle.html"; }, 1500);
+                    } else {
+                        this.classList.add('incorrect');
+                        message.style.color = 'var(--error-color)';
+                        message.textContent = "WRONG! Imposter detected.";
+                        message.classList.add('show');
+                        
+                        // Shake animation on the container
+                        const container = document.getElementById('quizSection');
+                        container.classList.add('shake-animation');
+                        
+                        // Reload or redirect back after delay
+                        setTimeout(() => { window.location.href = "index.html"; }, 2500);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

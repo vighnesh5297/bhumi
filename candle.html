@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Make a Wish</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Three.js for 3D STL Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Include OrbitControls to allow rotating the cake -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <main class="container fade-in" id="candleSection" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        
+        <div class="candle-container" id="theCandle">
+            <div class="flame" id="theFlame"></div>
+            <div class="wick"></div>
+            <div class="wax"></div>
+        </div>
+
+        <h1 class="welcome-text" style="font-size: 1.5rem; margin-top: 3rem;" id="instructionText">Blow the candle in...</h1>
+        <div id="countdown" style="font-size: 4rem; font-weight: bold; margin-top: 1rem; color: #fff;">3</div>
+        
+    </main>
+
+    <!-- Hidden by default, shown after candle blows out -->
+    <main class="container hidden" id="cakeSection" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
+        <h1 class="welcome-text fade-in" style="font-size: 1.8rem; margin-bottom: 1rem; position: absolute; top: 10%; z-index: 10;">Happy Birthday Bhumi!</h1>
+        <div id="3d-container" style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0;"></div>
+        
+        <!-- Button to show the popup -->
+        <button id="btnCutCake" class="fade-in hidden" style="position: absolute; bottom: 10%; z-index: 10; width: auto; padding: 1rem 2rem; border-radius: 50px; background-color: #ff6699; color: white;">CUT CAKE</button>
+    </main>
+
+    <!-- Hidden Popup Modal -->
+    <div id="letterPopup" class="popup-modal hidden">
+        <div class="popup-content fade-in">
+            <h2>WAIT!</h2>
+            <p>THERE IS A LETTER INSIDE THE CAKE</p>
+            <button id="btnOpenLetter" style="margin-top: 2rem;">OPEN IT</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countdownEl = document.getElementById('countdown');
+            const instructionText = document.getElementById('instructionText');
+            const flame = document.getElementById('theFlame');
+            const candleSection = document.getElementById('candleSection');
+            const cakeSection = document.getElementById('cakeSection');
+            const container3D = document.getElementById('3d-container');
+            
+            let timeLeft = 3;
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    countdownEl.textContent = timeLeft;
+                } else if (timeLeft === 0) {
+                    countdownEl.textContent = "0";
+                    countdownEl.style.display = 'none';
+                    instructionText.textContent = "Make a wish!";
+                    
+                    // Blow out the candle
+                    flame.classList.add('blown-out');
+
+                    // Next phase: Show the cake
+                    setTimeout(() => {
+                        candleSection.classList.add('fade-out');
+                        setTimeout(() => {
+                            candleSection.style.display = 'none';
+                            cakeSection.classList.remove('hidden');
+                            cakeSection.classList.add('fade-in');
+                            
+                            // Initialize 3D Cake
+                            init3DCake();
+
+                            // Show cut cake button slightly after cake appears
+                            setTimeout(() => {
+                                document.getElementById('btnCutCake').classList.remove('hidden');
+                            }, 2000);
+                        }, 400); // Wait for fade out
+                    }, 1500); // 1.5s after blowing out candle
+                    
+                    clearInterval(timer);
+                }
+            }, 1000);
+
+            // Popup Logic
+            const btnCutCake = document.getElementById('btnCutCake');
+            const letterPopup = document.getElementById('letterPopup');
+            const btnOpenLetter = document.getElementById('btnOpenLetter');
+
+            if (btnCutCake) {
+                btnCutCake.addEventListener('click', () => {
+                    letterPopup.classList.remove('hidden');
+                });
+            }
+
+            if (btnOpenLetter) {
+                btnOpenLetter.addEventListener('click', () => {
+                    // Navigate to the letter page (create this next!)
+                    window.location.href = "letter.html";
+                });
+            }
+
+            // Three.js STL Loader logic
+            function init3DCake() {
+                const scene = new THREE.Scene();
+                // Match the background color of the site
+                scene.background = new THREE.Color('#050505');
+
+                const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                // Adjust camera position. You might need to tweak this based on STL scale
+                camera.position.set(0, 50, 100);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                container3D.appendChild(renderer.domElement);
+
+                // Add OrbitControls to let the user swipe and rotate the cake
+                const controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+
+                // Lighting is necessary to see the 3D shape
+                const ambientLight = new THREE.AmbientLight(0x404040, 2); // Soft white light
+                scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+                directionalLight.position.set(50, 50, 50);
+                scene.add(directionalLight);
+                
+                const backLight = new THREE.DirectionalLight(0xffaaaa, 0.5); // Warm back light
+                backLight.position.set(-50, 50, -50);
+                scene.add(backLight);
+
+                // Load GLTF
+                const loader = new THREE.GLTFLoader();
+                
+                // Load the GLB model
+                loader.load('./blender/cake/cake final.glb', function (gltf) {
+                    const model = gltf.scene;
+                    
+                    // You might need to adjust the scale here depending on original GLB size
+                    // model.scale.set(1, 1, 1);
+                    
+                    // We can try to center the model using Box3
+                    const box = new THREE.Box3().setFromObject(model);
+                    const center = box.getCenter(new THREE.Vector3());
+                    model.position.sub(center); // Center the model
+                    
+                    // Optionally adjust rotation if needed
+                    // model.rotation.x = -Math.PI / 2;
+                    
+                    scene.add(model);
+                }, undefined, function (error) {
+                    console.error('Error loading GLTF:', error);
+                    // Provide fallback text if it fails
+                    const errorText = document.createElement('p');
+                    errorText.textContent = "(Unable to load the cake model)";
+                    errorText.style.color = '#ff4747';
+                    errorText.style.position = 'absolute';
+                    errorText.style.top = '50%';
+                    errorText.style.textAlign = 'center';
+                    errorText.style.width = '100%';
+                    container3D.appendChild(errorText);
+                });
+
+                // Animation loop
+                function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update(); // only required if controls.enableDamping or controls.autoRotate are set
+                    
+                    // Optional: slowly auto-rotate the cake
+                    // if (scene.children.length > 3) {
+                    //    scene.children[3].rotation.y += 0.005;
+                    // }
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+
+                // Handle window resize for mobile
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

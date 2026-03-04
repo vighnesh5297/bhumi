@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Wish For You</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wish-wrapper {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0 4rem 0; /* Add padding top and bottom so content isn't flush with screen edges */
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .wish-content {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        /* Custom Scrollbar for the whole page */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6699; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff3377; 
+        }
+    </style>
+</head>
+<body style="background-color: #050505; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; display: block;">
+    <main class="wish-wrapper fade-in">
+        
+        <h1 class="welcome-text" style="font-size: 2.5rem; margin-bottom: 2.5rem;">HAPPY BIRTHDAY</h1>
+        
+        <div class="wish-content fade-in">
+            <p>Dekho Dekho Kiska Birthday Aaya Hai 😜</p>
+            <br>
+            <p>So today finalllyy the day has arrived when I can wish you happy birthday after a 
+                very very long wait of years😂. Wish you a very happyyyy wala birthday Bhumi. I wish 
+                that you get all the happiness in the world and may all your dreams come true. 
+                And may you always be happy and smiling. Moreover you will find your boyfriend this
+                year jo ki tere standards KDrama se bhi zyada high krre and teko love krre and may you get 
+                ek-kiss from him as you are 21 now😂.
+            </p> 
+            <br>
+            <p>Yrr I cant describe in words how much I have waited for this day to wish you and try to
+                make your day special. But today i hope with this small trail followed by letter in cake
+                and abhi toh aage bhi kuch aaega unn sb se tere face pr mai smile laa paaya 😀😀.
+            </p>
+            <br>
+            <p>Or haa i cant even tell how happy i am to have a friend like you. You are one of the best
+                thing happened in my life and one of the special person i have met in my life and now
+                you are my favourite person whom i can talk about anything and i know you will listen
+                each and everything without even judging. I think God was really kind when they wrote 
+                a person like you in my life. Haa but thoda der se likha unhone but chlta hai 😜😜. 
+                You know what if i got a another life i would choose you as my classmate and best friend again and forever
+                but haa this time mai toh baat krne ki try krunga galti firse repeat nahi krunga iss time waali 😂😂
+            </p>
+            <br>
+            <p>You are the best person, best listner, best in every aspect. I am really really
+                really lucky to have someone like you in this kalyug world who is gorgeous, smart
+                (nahh smart toh nahi hai... brain ki thodi si kami hai.. use nahi kr paati), innocent,
+                caring, beautiful from heart. And you know what agr mai teri tareef chaand se krru
+                toh chaand itna jealous hoga ki subah tak sooraj ke jitna jalega. Ek or baat agr mai
+                teri tareef suraj se krru toh suraj jaln se itna garam ho jaaega ki earth ka temperature
+                increase ho jaaega wo bhi 100 degree se. Agr teri tareef ocean se krru toh wo bhi
+                jal kar dry ho jaaega 😜😂.(yahi thi jiss line ke liye permission le rha tha). 
+            </p>
+            <br>
+            <p>Chal maine ab bhut likh liya hai. Tere baare jitna likhu wo kam hai. Poora din nikal jaaega
+                issi mein isiliye i am ending my wish here and sparing your time taaki you can brush, bath,
+                spend time with family, go to temple(shiv mandir maybe), eat cake, open gifts and do whtever
+                you want to do because its you dayyy. Enjoy your day to you fullest extent girl. And haa 
+                always smile because smile krte hue tu achi lgti hai 😁😜. 
+                <br>Lots of wishes and lob from me. 
+                <br>HAPPPPYYYYYY WALA BIRTHDAY ONCE AGAIN AND BE HAPPPPYYYYY.
+            </p>
+        </div>
+        
+        <button id="btnGifts" class="btn-primary" style="padding: 1rem 2rem; border-radius: 50px;">Go for gifts</button>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnGifts = document.getElementById('btnGifts');
+            if (btnGifts) {
+                btnGifts.addEventListener('click', () => {
+                    // Navigate to the gifts page
+                    window.location.href = "gift1.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>

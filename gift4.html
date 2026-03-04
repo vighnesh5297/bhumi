@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Main Wish: The Finale</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #050505;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .gift-wrapper {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1rem 6rem 1rem;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 3rem;
+            color: #ffcc00; /* Gold for the grand finale */
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(255, 204, 0, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .main-wish-container {
+            width: 100%;
+            background: rgba(255, 204, 0, 0.05); /* Soft gold backdrop */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 3rem;
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: #fff;
+            text-align: center;
+        }
+
+        .main-wish-container p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .main-wish-container p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffcc00; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e6b800; 
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            border-radius: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: #ffcc00;
+            color: #050505;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="gift-wrapper fade-in">
+        
+        <h1 class="header-title fade-in">The Finale</h1>
+        
+        <div class="main-wish-container fade-in">
+            <p>So now its done from my side. I hope you liked this and I think i am successful enough
+                to make you smile and maybe thoda bhut special bana paaya.. Yeh bangles and rose is for you
+                ..I know itna acha bana nhi but itna hi best tha mera.. And haa wo rhyming achi lgi😂?..
+                Chal ab or tera time nahi lunga mai chalta hu isko yahi end krke... 
+                <br>Once again happy birthday my bestie.. 
+            </p>
+        </div>
+        
+        <h2 class="fade-in" style="font-size: 1.5rem; color: #fff; margin-bottom: 1.5rem; font-weight: 300;">Revisit Your Journey:</h2>
+        
+        <div class="nav-grid fade-in">
+            <button class="nav-btn" onclick="window.location.href='letter.html'">Letter</button>
+            <button class="nav-btn" onclick="window.location.href='wishes.html'">Wishes</button>
+            <button class="nav-btn" onclick="window.location.href='gift1.html'">Gift 1</button>
+            <button class="nav-btn" onclick="window.location.href='gift2.html'">Gift 2</button>
+            <button class="nav-btn" onclick="window.location.href='gift3.html'">Gift 3</button>
+        </div>
+        
+    </main>
+
+</body>
+</html>

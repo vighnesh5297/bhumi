@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Entry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Section 1: Entry / Name Input -->
+    <main class="container fade-in" id="entrySection">
+        <h1 class="title">TRESPASSER!!!!</h1>
+        <h2>How Dare You To Come Here?? Whats Your Name??</h2>
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder="Enter Your Name" autocomplete="off" spellcheck="false">
+            <button id="submitBtn">ENTER</button>
+        </div>
+        <p id="errorMessage" class="error-message"></p>
+    </main>
+
+    <!-- Section 2: Identity Question -->
+    <main class="container hidden" id="questionSection">
+        <h1 class="welcome-text" style="font-size: 1.5rem;">So Are You THE MISS THE GUNDI THE PIPPO THE BHUMI THE GUPTA??</h1>
+        <div class="button-group">
+            <button id="btnYes" class="btn-yes">YES</button>
+            <button id="btnNo" class="btn-no">NO</button>
+        </div>
+    </main>
+
+    <!-- Section 3: Verification & Biodata Loading -->
+    <main class="container hidden" id="verificationSection" style="height: 100vh; padding: 2rem 1.5rem;">
+        <h1 class="title" style="margin-bottom: 1rem; font-size: 1.8rem; flex-shrink: 0;" id="verificationTitle">Verifying...</h1>
+        
+        <div id="photoContainer" style="display: flex; justify-content: center; flex-shrink: 0; min-height: 140px; align-items: center;">
+            <!-- Photo will be injected here -->
+        </div>
+
+        <div class="biodata-content custom-scroll" id="dynamicBiodata" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-start; margin-top: 0.5rem; margin-bottom: 1.5rem; width: 100%;">
+            <!-- Content will be injected here sequentially by JS -->
+        </div>
+
+        <!-- Progress Bar at the bottom -->
+        <div style="width: 100%; flex-shrink: 0;">
+            <div class="progress-container" style="margin-top: 0;" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-text" id="progressText" style="margin-top: 0.5rem;">0 / 18 loaded</p>
+            <button id="btnConfirm" class="hidden" style="margin-top: 1rem;">CONFIRM</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gift 1: A Special Bangle</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Three.js and GLTFLoader for 3D Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body {
+            overflow: hidden; /* Prevent scrolling on the 3D page */
+            background-color: #050505;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Container for everything */
+        .gift-page-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Top Text Area */
+        .gift-header {
+            position: absolute;
+            top: 8vh; /* Adjust for notch/status bar spacing */
+            width: 90%;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none; /* Allows drags to pass through to the 3D canvas */
+        }
+        
+        .gift-title {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+        
+        .gift-desc {
+            font-size: 1rem;
+            color: #ccc;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        /* Details Area right above Button */
+        .gift-details {
+            position: absolute;
+            bottom: 18vh;
+            width: 85%;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gift-details p {
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* 3D Canvas Area */
+        #gift-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Sits behind text and buttons */
+        }
+
+        /* Bottom Button Area */
+        .nav-buttons {
+            position: absolute;
+            bottom: 6vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .nav-buttons button {
+            width: auto;
+            min-width: 200px;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="gift-page-wrapper fade-in">
+        
+        <!-- Header Section -->
+        <header class="gift-header fade-in">
+            <h1 class="gift-title">Your First Gift: Bangles</h1>
+        </header>
+
+        <!-- 3D Model Section -->
+        <div id="gift-container"></div>
+
+        <!-- Details Section -->
+        <div class="gift-details fade-in">
+            <p>Arre yrr yeh ache se bana nahi ek taraf se dekhoge toh extra surface dikhega
+                and sb join krdiye ek saath. BTW abhi toh bss aise hi de skta hu but in future 
+                maybe I will give it in physical form.</p>
+        </div>
+
+        <!-- Button Section -->
+        <div class="nav-buttons fade-in">
+            <button id="btnNextGift" class="btn-primary">Next Gift</button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container3D = document.getElementById('gift-container');
+
+            // Initialize 3D Scene
+            const scene = new THREE.Scene();
+            
+            // Adjust camera for mobile portrait
+            const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            // Move camera slightly down so model appears in center of screen between header and footer
+            camera.position.set(0, 2, 20); 
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            // Better colors for GLTF materials
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2; // Slightly brighter
+            container3D.appendChild(renderer.domElement);
+
+            // Orbit controls for touch dragging
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.autoRotate = true; 
+            controls.autoRotateSpeed = 1.0;
+            controls.enablePan = false; // Disable pan so user doesn't accidentally move it off screen
+
+            // Lighting setup for jewelry
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); 
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
+            directionalLight1.position.set(10, 20, 10);
+            scene.add(directionalLight1);
+
+            const directionalLight2 = new THREE.DirectionalLight(0xffeebb, 1);
+            directionalLight2.position.set(-10, -10, -10);
+            scene.add(directionalLight2);
+            
+            // Adds shine
+            const pointLight = new THREE.PointLight(0xffaaff, 2, 50);
+            pointLight.position.set(0, 5, 5);
+            scene.add(pointLight);
+
+            // Load Bangle Model
+            const loader = new THREE.GLTFLoader();
+            
+            loader.load('./blender/bangle/indian_bangle.glb', function (gltf) {
+                const model = gltf.scene;
+                
+                // Perfectly center the model geometry
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+                model.position.sub(center); 
+                
+                // Adjust scale so it fits nicely on a phone screen
+                // Often GLB files from blender load either tiny or massive. 
+                // We'll scale it to a normalized size using Box3 length
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const targetSize = 10; // Target width in 3D units for mobile fit
+                const scale = targetSize / maxDim;
+                
+                model.scale.set(scale, scale, scale);
+                
+                scene.add(model);
+            }, undefined, function (error) {
+                console.error('Error loading GLTF:', error);
+                const errorText = document.createElement('p');
+                errorText.textContent = "(Unable to load the bangle model)";
+                errorText.style.color = '#ff4747';
+                errorText.style.position = 'absolute';
+                errorText.style.top = '50%';
+                errorText.style.textAlign = 'center';
+                errorText.style.width = '100%';
+                errorText.style.zIndex = '20';
+                container3D.appendChild(errorText);
+            });
+
+            // Loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update(); 
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // Action
+            const btnNextGift = document.getElementById('btnNextGift');
+            if (btnNextGift) {
+                btnNextGift.addEventListener('click', () => {
+                    // window.location.href = "gift2.html";
+                    window.location.href = "gift2.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>

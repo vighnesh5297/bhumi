@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Secret Letter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #050505;">
+    <!-- Old Paper Background Overlay -->
+    <div class="old-paper-bg"></div>
+
+    <main class="old-letter-container fade-in custom-scroll">
+        
+        <!-- Photo Slot -->
+        <div class="photo-slot">
+            <p>photo</p>
+            <!-- When you have a photo, uncomment and change the src below: -->
+            <!-- <img src="your-photo.jpg" alt="Memory" style="width: 100%; height: 100%; object-fit: cover;"> -->
+        </div>
+
+        <!-- Handwritten Style Text -->
+        <div class="handwritten-text">
+            <p>Dear Bhumi,</p>
+            
+            <p>This little trail of questions, cakes and candles were all just a small way to put a big smile on your face because tu haste hue bhut achi lgti hai.</p>
+            
+            <p>Wish you a veryyyyyyyyyyyyyyyyyyy happpppyyyyyyy wala birthday bhumi. Yeh jo uper choti bhumi ki photo hai yeh bss tere andr ka chota child jagane ke liye hai. May this year will be the best year for you
+            , teri saari wishes poori ho and tu hamesha khush rahe and aise hi hasmukh rhe hamesha haste raha krre kabhi bhi pareshani ya dukh na aae tere jeevan mein yeh mai dil se dua krta hu.
+            </p>
+
+            <p>Abhi toh start hai aage dekh kya kya hai 😂😂😂</p>
+
+            <p>- Ghonchu</p>
+        </div>
+
+        <!-- Footer Button -->
+        <button id="btnKeepAside" class="btn-primary" style="margin-top: 3rem; margin-bottom: 2rem;">KEEP IT ASIDE</button>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnKeepAside = document.getElementById('btnKeepAside');
+
+            if (btnKeepAside) {
+                btnKeepAside.addEventListener('click', () => {
+                    // Navigate to the next phase or end screen
+                    window.location.href = "transition.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>

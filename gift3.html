@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Final Surprise: Words From The Heart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #050505;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .gift-wrapper {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1rem 6rem 1rem;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            color: #ff3366; 
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(255, 51, 102, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .poem-container {
+            width: 100%;
+            background: rgba(255, 51, 102, 0.05); /* Soft pink backdrop */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 51, 102, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 3rem;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: #eee;
+            text-align: center;
+        }
+
+        .poem-container p.stanza {
+            margin-bottom: 2rem;
+        }
+        
+        .poem-container p.stanza:last-child {
+            margin-bottom: 0;
+        }
+
+        .closing-message {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff3366; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff1a53; 
+        }
+    </style>
+</head>
+<body>
+
+    <main class="gift-wrapper fade-in">
+        
+        <h1 class="header-title fade-in">Rhyming</h1>
+        
+        <div class="poem-container fade-in">
+            <div style="font-size: 1.15rem; line-height: 2; margin-top: -1rem;">
+                
+             <pre style="text-align: center; font-style: italic; font-size: 1.15rem; font-family: 'Times New Roman', serif; display:block; padding:auto; white-space: pre-wrap;">
+Hey my LOTTE CHOCO PIE,
+Hello my LITTLE HEART😜
+You are FANTASTIK,
+You are sweet as ECLAIRS,
+You make my mood refresh like CENTRE FRESH,
+Every MUNCH feels sweeter with you,
+You are my DAIRY MILK SILK who make everything sweeter,
+Your voice sounds like a MELODY,
+But your brain is FUSED😜,
+I say OYES mam to you always,
+With you all my FUNPOPs out,
+And I want you to be more NATKHAT,
+You are my GEMS rare and precious,
+And I want to review you with solid 5STARS,
+And my every PULSE says,
+YOU ARE MY BEST FRIEND
+</pre>
+        </div>
+
+        <h2 class="closing-message fade-in">Happy Birthday, Bhumi</h2>
+        
+        <button id="btnFinale" class="btn-primary fade-in" style="padding: 1rem 3rem; font-size: 1.2rem; border-radius: 50px;">FINALE</button>
+        
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnFinale = document.getElementById('btnFinale');
+            if (btnFinale) {
+                btnFinale.addEventListener('click', () => {
+                    // Navigate to final wish page
+                    window.location.href = "gift4.html";
+                });
+            }
+        });
+    </script>
+</body>
+</html>
