@@ -43,13 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'text', label: 'Fav Quote', value: 'Shut Up Yrr'},
         { type: 'text', label: 'Fav Actor', value: 'Seon Kim'},
         { type: 'text', label: 'Fav Singer', value: 'Talwinder'},
-        { type: 'text', label: 'Paglu', value: 'SeonPaglu and TalwinderPaglu'},
+        { type: 'text', label: 'Paglu', value: 'SeonPaglu and TalwinderPaglu, KoreaPaglu'},
         { type: 'text', label: 'Fav Place', value: 'Finland, Korea, Japan'},
         { type: 'text', label: 'Fav Thing', value: 'Northern Lights'},
         { type: 'text', label: 'Hobby', value: 'Eating, Sleeping, Being Confused'},
         { type: 'text', label: 'Nature', value: 'Green Forest'},
         { type: 'text', label: 'Most Hated Thing', value: 'Doglapanti'},
-        { type: 'text', label: 'Fav Activity', value: 'Bathing'}
+        { type: 'text', label: 'Fav Activity', value: 'Bathing'},
+        { type: 'text', label: 'Fav Series', value: 'Lovely Runner'},
+        { type: 'text', label: 'Fav Drink', value: 'Tea'},
         ];
 
     function startVerificationSequence() {
